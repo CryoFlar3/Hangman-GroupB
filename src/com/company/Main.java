@@ -11,5 +11,7 @@ public class Main {
             prompter.displayProgress();
             prompter.promptForGuess();
         }
+
+        prompter.displayOutcome();
     }
 }

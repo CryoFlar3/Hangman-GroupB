@@ -28,12 +28,12 @@ public class Prompter {
     }
 
     public void displayProgress(){
-        System.out.println(game.getProgress());
+        System.out.printf("You have %d tries remaining to guess the answer. %n%s%n", game.getRemainingTries(), game.getProgress());
     }
 
     public void displayOutcome(){
         if (game.isWon()){
-            System.out.printf("Congrats! you won with $s tries remaining! %n", game.getRemainingTries());
+            System.out.printf("Congrats! you won with %s tries remaining! %n", game.getRemainingTries());
         } else {
             System.out.printf("Bummer. The correct answer was %s, %n", game.getAnswer());
         }
