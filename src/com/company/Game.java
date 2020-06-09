@@ -1,6 +1,7 @@
 package com.company;
 
 public class Game {
+    public static final int MAX_MISSES = 7;
     private String answer;
     private String hits;
     private String misses;
@@ -9,6 +10,25 @@ public class Game {
         this.answer = answer;
         hits = "";
         misses = "";
+    }
+
+    private char normalizeGuess(char letter){
+        if (!Character.isLetter(letter)){
+            throw new IllegalArgumentException("A letter is required");
+        }
+        letter = Character.toLowerCase(letter);
+        return letter;
+    }
+
+    public boolean applyGuess(char letter){
+        letter = normalizeGuess(letter);
+        boolean isHit = answer.indexOf(letter) != -1;
+        if (isHit){
+            hits += letter;
+        } else{
+            misses += letter;
+        }
+        return isHit;
     }
 
     public String getProgress(){
@@ -21,5 +41,17 @@ public class Game {
             progress += display;
         }
         return progress;
+    }
+
+    public int getRemainingTries(){
+        return MAX_MISSES - misses.length();
+    }
+
+    public boolean isWon(){
+        return getProgress().indexOf('-') == -1;
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 }

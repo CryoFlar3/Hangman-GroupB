@@ -6,5 +6,10 @@ public class Main {
 	// write your code here
         Game game = new Game("playstation");
         Prompter prompter = new Prompter(game);
+
+        while (game.getRemainingTries() > 0 && !game.isWon()) {
+            prompter.displayProgress();
+            prompter.promptForGuess();
+        }
     }
 }
