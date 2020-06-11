@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Random;
+
 public class Game {
     public static final int MAX_MISSES = 7;
     private String answer;
@@ -37,6 +39,10 @@ public class Game {
     public boolean applyGuess(String letters){
         if (letters.length() == 0){
             throw new IllegalArgumentException("No letter found");
+        }
+        if (answer.equals(letters.toLowerCase())){
+            hits += letters;
+            return true;
         }
         return applyGuess(letters.charAt(0));
     }
