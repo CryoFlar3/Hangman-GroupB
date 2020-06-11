@@ -17,6 +17,9 @@ public class Game {
             throw new IllegalArgumentException("A letter is required");
         }
         letter = Character.toLowerCase(letter);
+        if (hits.indexOf(letter) != -1 || misses.indexOf(letter) != -1){
+            throw new IllegalArgumentException("You've already guessed " + letter);
+        }
         return letter;
     }
 
@@ -29,6 +32,13 @@ public class Game {
             misses += letter;
         }
         return isHit;
+    }
+
+    public boolean applyGuess(String letters){
+        if (letters.length() == 0){
+            throw new IllegalArgumentException("No letter found");
+        }
+        return applyGuess(letters.charAt(0));
     }
 
     public String getProgress(){
